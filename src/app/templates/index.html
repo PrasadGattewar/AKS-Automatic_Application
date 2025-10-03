@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document Type Detector</title>
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; margin: 2rem; background:#f7f9fb; }
+        h1 { color:#222; }
+        form { background:#fff; padding:1.25rem 1.5rem; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.08); max-width:480px; }
+        .result { margin-top:1.5rem; background:#fff; padding:1rem 1.25rem; border-left:4px solid #2563eb; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.06);}        
+        label { display:block; margin-bottom:.5rem; font-weight:600; }
+        input[type=file] { margin-bottom:1rem; }
+        button { background:#2563eb; color:#fff; border:none; padding:.6rem 1.1rem; border-radius:4px; cursor:pointer; font-size:1rem; }
+        button:hover { background:#1d4ed8; }
+        code { background:#eef2f7; padding:2px 4px; border-radius:4px; }
+        footer { margin-top:2rem; font-size:.8rem; color:#555; }
+    </style>
+</head>
+<body>
+    <h1>Document Type Detector</h1>
+    <p>Upload a file and the server will attempt to identify its document type using the filename extension and a few content heuristics.</p>
+    <form action="/detect" method="post" enctype="multipart/form-data">
+        <label for="file">Select a file:</label>
+        <input id="file" name="file" type="file" required />
+        <button type="submit">Detect Type</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Result</h2>
+        <p><strong>Filename:</strong> {{ result.filename }}</p>
+        <p><strong>Detected Type:</strong> {{ result.detected_type }}</p>
+        <p><strong>Method:</strong> <code>{{ result.method }}</code></p>
+    </div>
+    {% endif %}
+
+    <footer>
+        <p>API endpoint: <code>POST /api/detect</code> (multipart form field name: <code>file</code>)</p>
+    </footer>
+</body>
+</html>

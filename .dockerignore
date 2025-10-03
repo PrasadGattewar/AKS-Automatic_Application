@@ -1,0 +1,19 @@
+# Exclusions to keep image small
+.git
+.gitignore
+.vscode
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache
+.pytest_cache
+.venv
+.env
+.env.*
+Dockerfile*
+README.md
+LICENSE
+# Optionally exclude tests from final image (uncomment if desired)
+# tests
