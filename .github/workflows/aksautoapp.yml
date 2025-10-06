@@ -160,6 +160,10 @@ jobs:
           kubectl describe pods -n ${{ env.NAMESPACE }}
           kubectl logs -l app.kubernetes.io/name=${{ env.CONTAINER_NAME }} -n ${{ env.NAMESPACE }} --tail=100
 
+      - name: Docker login to ACR
+        run: |
+          az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY }}
+
       # Deploys application based on given manifest  file
       - name: Deploys application
         uses: Azure/k8s-deploy@v5
