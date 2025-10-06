@@ -154,6 +154,12 @@ jobs:
             kubectl get namespace ${{ env.NAMESPACE }}
           fi
 
+      - name: Debug Pods
+        run: |
+          kubectl get pods -n ${{ env.NAMESPACE }}
+          kubectl describe pods -n ${{ env.NAMESPACE }}
+          kubectl logs -l app.kubernetes.io/name=${{ env.CONTAINER_NAME }} -n ${{ env.NAMESPACE }} --tail=100
+
       # Deploys application based on given manifest  file
       - name: Deploys application
         uses: Azure/k8s-deploy@v5
