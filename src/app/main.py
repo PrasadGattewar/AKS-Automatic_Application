@@ -9,6 +9,7 @@ app = FastAPI(title="Document Type Detector", version="0.1.0")
 
 templates = Jinja2Templates(directory=str(Path(__file__).parent / 'templates'))
 
+
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
